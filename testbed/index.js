@@ -1,7 +1,6 @@
-var planck = require('../lib/');
-var Stage = require('stage-js/platform/web');
-
-module.exports = planck;
+import * as planck from "../lib/";
+import Stage from "stage-js/platform/web";
+export default planck;
 
 // x, y, width, height: camera position
 // hz, speed: frequency and speed of simulation
