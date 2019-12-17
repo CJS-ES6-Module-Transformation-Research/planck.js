@@ -1,27 +1,28 @@
-import { Pool } from "../lib/util/Pool";
+var _Pool = require('../lib/util/Pool');
+
 var expect = require('./testutil/expect');
 
-describe('Pool', function() {
-  it('Pool', function() {
+describe('Pool', function () {
+  it('Pool', function () {
 
-    var pool = new Pool({
-      create : function() {
+    var pool = new _Pool.Pool({
+      create: function create() {
         return {
-          created : true,
-          busy : false,
-          discarded : false,
+          created: true,
+          busy: false,
+          discarded: false
         };
       },
-      allocate : function(obj) {
+      allocate: function allocate(obj) {
         obj.busy = true;
       },
-      release : function(obj) {
+      release: function release(obj) {
         obj.busy = false;
       },
-      discard : function(obj) {
+      discard: function discard(obj) {
         obj.discarded = true;
       },
-      max : 1
+      max: 1
     });
 
     var a = pool.allocate();
@@ -37,6 +38,5 @@ describe('Pool', function() {
 
     pool.release(b);
     expect(b.discarded).be.ok;
-
   });
 });
