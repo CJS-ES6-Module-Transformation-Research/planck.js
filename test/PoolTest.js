@@ -1,6 +1,5 @@
+import { Pool } from "../lib/util/Pool";
 var expect = require('./testutil/expect');
-
-var Pool = require('../lib/util/Pool');
 
 describe('Pool', function() {
   it('Pool', function() {
