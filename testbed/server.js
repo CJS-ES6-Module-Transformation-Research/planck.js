@@ -1,9 +1,8 @@
-var Path = require('path');
-var FS = require('fs');
-var Express = require('express');
-var Browserify = require('browserify-middleware');
-// var ServeIndex = require('serve-index');
-var Handlebars = require('handlebars');
+import Path from "path";
+import FS from "fs";
+import Express from "express";
+import Browserify from "browserify-middleware";
+import Handlebars from "handlebars";
 
 var app = Express();
 
