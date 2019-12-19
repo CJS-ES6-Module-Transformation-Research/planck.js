@@ -1,4 +1,5 @@
-var expect = module.exports = require('expect.js');
+import exports from "expect.js";
+var expect = module.exports = exports;
 
 expect.Assertion.prototype.list = function(obj, stringify) {
   var sfn;

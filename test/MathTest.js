@@ -1,9 +1,7 @@
+import sinon from "sinon";
+import { math as Math } from "../lib/common/Math";
+import { Vec2 } from "../lib/common/Vec2";
 var expect = require('./testutil/expect');
-var sinon = require('sinon');
-
-var Math = require('../lib/common/Math');
-var Vec2 = require('../lib/common/Vec2');
-var Vec3 = require('../lib/common/Vec2');
 
 describe('Math', function() {
 
