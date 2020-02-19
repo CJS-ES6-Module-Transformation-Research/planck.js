@@ -1,21 +1,20 @@
-var expect = require('./testutil/expect');
-var sinon = require('sinon');
-
-var Math = require('../lib/common/Math');
-var Vec2 = require('../lib/common/Vec2');
-var Vec3 = require('../lib/common/Vec2');
+import { expect } from "./testutil/expect";
+import sinon from "sinon";
+import { isFinite as Mathjs_isFinite } from "../lib/common/Math";
+import { Vec2 } from "../lib/common/Vec2";
+import { Vec2 as Vec3 } from "../lib/common/Vec2";
 
 describe('Math', function() {
 
   it('Math', function() {
-    expect(Math.isFinite(+'NaN')).be(false);
-    expect(Math.isFinite(Infinity)).be(false);
-    expect(Math.isFinite('0')).be(false);
-    expect(Math.isFinite('')).be(false);
+    expect(Mathjs_isFinite(+'NaN')).be(false);
+    expect(Mathjs_isFinite(Infinity)).be(false);
+    expect(Mathjs_isFinite('0')).be(false);
+    expect(Mathjs_isFinite('')).be(false);
 
-    expect(Math.isFinite(1)).be(true);
-    expect(Math.isFinite(0)).be(true);
-    expect(Math.isFinite(-1)).be(true);
+    expect(Mathjs_isFinite(1)).be(true);
+    expect(Mathjs_isFinite(0)).be(true);
+    expect(Mathjs_isFinite(-1)).be(true);
 
     // InvSqrt
     // NextPowerOfTwo

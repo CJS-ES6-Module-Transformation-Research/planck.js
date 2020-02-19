@@ -1,10 +1,9 @@
-var expect = require('./testutil/expect');
-var sinon = require('sinon');
-
-var Vec2 = require('../lib/common/Vec2');
-var AABB = require('../lib/collision/AABB');
-var DynamicTree = require('../lib/collision/DynamicTree');
-var BroadPhase = require('../lib/collision/BroadPhase');
+import { expect } from "./testutil/expect";
+import sinon from "sinon";
+import { Vec2 } from "../lib/common/Vec2";
+import { AABB } from "../lib/collision/AABB";
+import { DynamicTree } from "../lib/collision/DynamicTree";
+import { BroadPhase } from "../lib/collision/BroadPhase";
 
 describe('Collision', function() {
 
