@@ -1,127 +1,134 @@
-import { expect as MathTest_expect } from "./testutil/expect";
-import sinon from "sinon";
-import { isFinite as Mathjs_isFinite } from "../lib/common/Math";
-import { Vec2 as MathTest_Vec2 } from "../lib/common/Vec2";
-import { Vec2 as MathTest_Vec3 } from "../lib/common/Vec2";
+var _expect = require("./testutil/expect");
 
-describe('Math', function() {
+var _sinon = require("sinon");
 
-  it('Math', function() {
-    expect(Mathjs_isFinite(+'NaN')).be(false);
-    expect(Mathjs_isFinite(Infinity)).be(false);
-    expect(Mathjs_isFinite('0')).be(false);
-    expect(Mathjs_isFinite('')).be(false);
+var _sinon2 = _interopRequireDefault(_sinon);
 
-    expect(Mathjs_isFinite(1)).be(true);
-    expect(Mathjs_isFinite(0)).be(true);
-    expect(Mathjs_isFinite(-1)).be(true);
+var _Math = require("../lib/common/Math");
 
-    // InvSqrt
-    // NextPowerOfTwo
-    // IsPowerOfTwo
-    // clamp
-    // EPSILON
-  });
+var _Vec = require("../lib/common/Vec2");
 
-  it('Vec2', function() {
-    var r, v = new Vec2();
-    expect(v.x).be(0);
-    expect(v.y).be(0);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    v.set(3, 4);
-    expect(v.x).be(3);
-    expect(v.y).be(4);
-    expect(v.length()).be(5);
-    expect(v.lengthSquared()).be(25);
+describe('Math', function () {
 
-    v.normalize(3, 4);
-    expect(v.x).near(3 / 5);
-    expect(v.y).near(4 / 5);
+    it('Math', function () {
+        expect((0, _Math.isFinite)(+'NaN')).be(false);
+        expect((0, _Math.isFinite)(Infinity)).be(false);
+        expect((0, _Math.isFinite)('0')).be(false);
+        expect((0, _Math.isFinite)('')).be(false);
 
-    v.setZero();
-    expect(v.x).be(0);
-    expect(v.y).be(0);
+        expect((0, _Math.isFinite)(1)).be(true);
+        expect((0, _Math.isFinite)(0)).be(true);
+        expect((0, _Math.isFinite)(-1)).be(true);
 
-    v.add(new Vec2(3, 2));
-    expect(v.x).be(3);
-    expect(v.y).be(2);
+        // InvSqrt
+        // NextPowerOfTwo
+        // IsPowerOfTwo
+        // clamp
+        // EPSILON
+    });
 
-    v.sub(new Vec2(2, 1));
-    expect(v.x).be(1);
-    expect(v.y).be(1);
+    it('Vec2', function () {
+        var r,
+            v = new Vec2();
+        expect(v.x).be(0);
+        expect(v.y).be(0);
 
-    v.mul(5);
-    expect(v.x).be(5);
-    expect(v.y).be(5);
+        v.set(3, 4);
+        expect(v.x).be(3);
+        expect(v.y).be(4);
+        expect(v.length()).be(5);
+        expect(v.lengthSquared()).be(25);
 
-    v.set(2, 3);
-    expect(v.x).be(2);
-    expect(v.y).be(3);
+        v.normalize(3, 4);
+        expect(v.x).near(3 / 5);
+        expect(v.y).near(4 / 5);
 
-    r = Vec2.skew(v);
-    expect(r.x).be(-3);
-    expect(r.y).be(2);
+        v.setZero();
+        expect(v.x).be(0);
+        expect(v.y).be(0);
 
-    r = Vec2.dot(v, new Vec2(2, 3));
-    expect(r).be(13);
+        v.add(new Vec2(3, 2));
+        expect(v.x).be(3);
+        expect(v.y).be(2);
 
-    r = Vec2.cross(v, new Vec2(2, 3));
-    expect(r).be(0);
+        v.sub(new Vec2(2, 1));
+        expect(v.x).be(1);
+        expect(v.y).be(1);
 
-    r = Vec2.cross(v, 5);
-    expect(r.x).be(15);
-    expect(r.y).be(-10);
+        v.mul(5);
+        expect(v.x).be(5);
+        expect(v.y).be(5);
 
-    r = Vec2.clamp(Vec2(6, 8), 5);
-    expect(r.x).near(3);
-    expect(r.y).near(4);
+        v.set(2, 3);
+        expect(v.x).be(2);
+        expect(v.y).be(3);
 
-  });
+        r = Vec2.skew(v);
+        expect(r.x).be(-3);
+        expect(r.y).be(2);
 
-  it('Vec3', function() {
-    return;
+        r = Vec2.dot(v, new Vec2(2, 3));
+        expect(r).be(13);
 
-    var r, v = Vec3();
-    expect(v.x).be(0);
-    expect(v.y).be(0);
-    expect(v.z).be(0);
+        r = Vec2.cross(v, new Vec2(2, 3));
+        expect(r).be(0);
 
-    v = Vec3(3, 4, 5);
-    expect(v.x).be(3);
-    expect(v.y).be(4);
-    expect(v.z).be(5);
+        r = Vec2.cross(v, 5);
+        expect(r.x).be(15);
+        expect(r.y).be(-10);
 
-    v.setZero();
-    expect(v.x).be(0);
-    expect(v.y).be(0);
-    expect(v.z).be(0);
+        r = Vec2.clamp(Vec2(6, 8), 5);
+        expect(r.x).near(3);
+        expect(r.y).near(4);
+    });
 
-    v.add(Vec3(3, 2, 1));
-    expect(v.x).be(3);
-    expect(v.y).be(2);
-    expect(v.z).be(1);
+    it('Vec3', function () {
+        return;
 
-    v.sub(Vec3(0, 1, 2));
-    expect(v.x).be(3);
-    expect(v.y).be(1);
-    expect(v.z).be(-1);
+        var r,
+            v = Vec3();
+        expect(v.x).be(0);
+        expect(v.y).be(0);
+        expect(v.z).be(0);
 
-    v.mul(5);
-    expect(v.x).be(15);
-    expect(v.y).be(5);
-    expect(v.z).be(-5);
+        v = Vec3(3, 4, 5);
+        expect(v.x).be(3);
+        expect(v.y).be(4);
+        expect(v.z).be(5);
 
-    v.set(2, 3, 4);
-    expect(v.x).be(2);
-    expect(v.y).be(3);
-    expect(v.z).be(4);
+        v.setZero();
+        expect(v.x).be(0);
+        expect(v.y).be(0);
+        expect(v.z).be(0);
 
-    r = Vec3.dot(v, Vec3(2, 0, -1));
-    expect(r).be(0);
+        v.add(Vec3(3, 2, 1));
+        expect(v.x).be(3);
+        expect(v.y).be(2);
+        expect(v.z).be(1);
 
-    r = Vec3.cross(v, Vec3(2, 0, -1));
-    expect(r.x).be(-3);
-    expect(r.y).be(10);
-    expect(r.z).be(-6);
-  });
+        v.sub(Vec3(0, 1, 2));
+        expect(v.x).be(3);
+        expect(v.y).be(1);
+        expect(v.z).be(-1);
+
+        v.mul(5);
+        expect(v.x).be(15);
+        expect(v.y).be(5);
+        expect(v.z).be(-5);
+
+        v.set(2, 3, 4);
+        expect(v.x).be(2);
+        expect(v.y).be(3);
+        expect(v.z).be(4);
+
+        r = Vec3.dot(v, Vec3(2, 0, -1));
+        expect(r).be(0);
+
+        r = Vec3.cross(v, Vec3(2, 0, -1));
+        expect(r.x).be(-3);
+        expect(r.y).be(10);
+        expect(r.z).be(-6);
+    });
 });
