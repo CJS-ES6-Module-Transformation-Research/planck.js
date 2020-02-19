@@ -1,11 +1,8 @@
-var expect = require('./testutil/expect');
-var sinon = require('sinon');
-
-var Vec2 = require('../lib/common/Vec2');
-var Circle = require('../lib/shape/CircleShape');
-var Body = require('../lib/Body');
-var Fixture = require('../lib/Fixture');
-var World = require('../lib/World');
+import { expect as BasicTest_expect } from "./testutil/expect";
+import sinon from "sinon";
+import { Vec2 as BasicTest_Vec2 } from "../lib/common/Vec2";
+import { CircleShape as BasicTest_Circle } from "../lib/shape/CircleShape";
+import { World as BasicTest_World } from "../lib/World";
 
 describe('Basic', function() {
 
