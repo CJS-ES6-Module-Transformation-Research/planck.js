@@ -1,21 +1,14 @@
-var expect = require('./testutil/expect');
-var sinon = require('sinon');
-
-var Vec2 = require('../lib/common/Vec2');
-var Transform = require('../lib/common/Transform');
-var Sweep = require('../lib/common/Sweep');
-
-var Circle = require('../lib/shape/CircleShape');
-
-var Body = require('../lib/Body');
-var Fixture = require('../lib/Fixture');
-var World = require('../lib/World');
-
-var TimeOfImpact = require('../lib/collision/TimeOfImpact');
+import { expect as CCDTest_expect } from "./testutil/expect";
+import sinon from "sinon";
+import { Vec2 as CCDTest_Vec2 } from "../lib/common/Vec2";
+import { Transform as CCDTest_Transform } from "../lib/common/Transform";
+import { Sweep as CCDTest_Sweep } from "../lib/common/Sweep";
+import { CircleShape as CCDTest_Circle } from "../lib/shape/CircleShape";
+import { TimeOfImpact as CCDTest_TimeOfImpact } from "../lib/collision/TimeOfImpact";
+import { Distance as CCDTest_Distance } from "../lib/collision/Distance";
 var TOIInput = TimeOfImpact.Input;
 var TOIOutput = TimeOfImpact.Output;
 
-var Distance = require('../lib/collision/Distance');
 var DistanceInput = Distance.Input;
 var DistanceOutput = Distance.Output;
 var DistanceProxy = Distance.Proxy;
