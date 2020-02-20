@@ -1,127 +1,136 @@
-import { expect as MathTest_expect } from "./testutil/expect";
-import sinon from "sinon";
-import { math as MathTest_Math, isFinite as Mathjs_isFinite } from "../lib/common/Math";
-import { Vec2 as MathTest_Vec2 } from "../lib/common/Vec2";
-import { Vec2 as MathTest_Vec3 } from "../lib/common/Vec2";
+var _expect = require("./testutil/expect");
 
-describe('Math', function() {
+var _sinon = require("sinon");
 
-  it('Math', function() {
-    MathTest_expect(Mathjs_isFinite(+'NaN')).be(false);
-    MathTest_expect(Mathjs_isFinite(Infinity)).be(false);
-    MathTest_expect(Mathjs_isFinite('0')).be(false);
-    MathTest_expect(Mathjs_isFinite('')).be(false);
+var _sinon2 = _interopRequireDefault(_sinon);
 
-    MathTest_expect(Mathjs_isFinite(1)).be(true);
-    MathTest_expect(Mathjs_isFinite(0)).be(true);
-    MathTest_expect(Mathjs_isFinite(-1)).be(true);
+var _Math = require("../lib/common/Math");
 
-    // InvSqrt
-    // NextPowerOfTwo
-    // IsPowerOfTwo
-    // clamp
-    // EPSILON
-  });
+var _Vec = require("../lib/common/Vec2");
 
-  it('Vec2', function() {
-    var r, v = new MathTest_Vec2();
-    MathTest_expect(v.x).be(0);
-    MathTest_expect(v.y).be(0);
+function _interopRequireDefault(obj) {
+    return obj && obj.__esModule ? obj : { default: obj };
+}
 
-    v.set(3, 4);
-    MathTest_expect(v.x).be(3);
-    MathTest_expect(v.y).be(4);
-    MathTest_expect(v.length()).be(5);
-    MathTest_expect(v.lengthSquared()).be(25);
+describe('Math', function () {
 
-    v.normalize(3, 4);
-    MathTest_expect(v.x).near(3 / 5);
-    MathTest_expect(v.y).near(4 / 5);
+    it('Math', function () {
+        (0, _expect.expect)((0, _Math.isFinite)(+'NaN')).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)(Infinity)).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)('0')).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)('')).be(false);
 
-    v.setZero();
-    MathTest_expect(v.x).be(0);
-    MathTest_expect(v.y).be(0);
+        (0, _expect.expect)((0, _Math.isFinite)(1)).be(true);
+        (0, _expect.expect)((0, _Math.isFinite)(0)).be(true);
+        (0, _expect.expect)((0, _Math.isFinite)(-1)).be(true);
 
-    v.add(new MathTest_Vec2(3, 2));
-    MathTest_expect(v.x).be(3);
-    MathTest_expect(v.y).be(2);
+        // InvSqrt
+        // NextPowerOfTwo
+        // IsPowerOfTwo
+        // clamp
+        // EPSILON
+    });
 
-    v.sub(new MathTest_Vec2(2, 1));
-    MathTest_expect(v.x).be(1);
-    MathTest_expect(v.y).be(1);
+    it('Vec2', function () {
+        var r,
+            v = new _Vec.Vec2();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
 
-    v.mul(5);
-    MathTest_expect(v.x).be(5);
-    MathTest_expect(v.y).be(5);
+        v.set(3, 4);
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(4);
+        (0, _expect.expect)(v.length()).be(5);
+        (0, _expect.expect)(v.lengthSquared()).be(25);
 
-    v.set(2, 3);
-    MathTest_expect(v.x).be(2);
-    MathTest_expect(v.y).be(3);
+        v.normalize(3, 4);
+        (0, _expect.expect)(v.x).near(3 / 5);
+        (0, _expect.expect)(v.y).near(4 / 5);
 
-    r = MathTest_Vec2.skew(v);
-    MathTest_expect(r.x).be(-3);
-    MathTest_expect(r.y).be(2);
+        v.setZero();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
 
-    r = MathTest_Vec2.dot(v, new MathTest_Vec2(2, 3));
-    MathTest_expect(r).be(13);
+        v.add(new _Vec.Vec2(3, 2));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(2);
 
-    r = MathTest_Vec2.cross(v, new MathTest_Vec2(2, 3));
-    MathTest_expect(r).be(0);
+        v.sub(new _Vec.Vec2(2, 1));
+        (0, _expect.expect)(v.x).be(1);
+        (0, _expect.expect)(v.y).be(1);
 
-    r = MathTest_Vec2.cross(v, 5);
-    MathTest_expect(r.x).be(15);
-    MathTest_expect(r.y).be(-10);
+        v.mul(5);
+        (0, _expect.expect)(v.x).be(5);
+        (0, _expect.expect)(v.y).be(5);
 
-    r = MathTest_Vec2.clamp(MathTest_Vec2(6, 8), 5);
-    MathTest_expect(r.x).near(3);
-    MathTest_expect(r.y).near(4);
+        v.set(2, 3);
+        (0, _expect.expect)(v.x).be(2);
+        (0, _expect.expect)(v.y).be(3);
 
-  });
+        r = _Vec.Vec2.skew(v);
+        (0, _expect.expect)(r.x).be(-3);
+        (0, _expect.expect)(r.y).be(2);
 
-  it('Vec3', function() {
-    return;
+        r = _Vec.Vec2.dot(v, new _Vec.Vec2(2, 3));
+        (0, _expect.expect)(r).be(13);
 
-    var r, v = MathTest_Vec3();
-    MathTest_expect(v.x).be(0);
-    MathTest_expect(v.y).be(0);
-    MathTest_expect(v.z).be(0);
+        r = _Vec.Vec2.cross(v, new _Vec.Vec2(2, 3));
+        (0, _expect.expect)(r).be(0);
 
-    v = MathTest_Vec3(3, 4, 5);
-    MathTest_expect(v.x).be(3);
-    MathTest_expect(v.y).be(4);
-    MathTest_expect(v.z).be(5);
+        r = _Vec.Vec2.cross(v, 5);
+        (0, _expect.expect)(r.x).be(15);
+        (0, _expect.expect)(r.y).be(-10);
 
-    v.setZero();
-    MathTest_expect(v.x).be(0);
-    MathTest_expect(v.y).be(0);
-    MathTest_expect(v.z).be(0);
+        r = _Vec.Vec2.clamp((0, _Vec.Vec2)(6, 8), 5);
+        (0, _expect.expect)(r.x).near(3);
+        (0, _expect.expect)(r.y).near(4);
+    });
 
-    v.add(MathTest_Vec3(3, 2, 1));
-    MathTest_expect(v.x).be(3);
-    MathTest_expect(v.y).be(2);
-    MathTest_expect(v.z).be(1);
+    it('Vec3', function () {
+        return;
 
-    v.sub(MathTest_Vec3(0, 1, 2));
-    MathTest_expect(v.x).be(3);
-    MathTest_expect(v.y).be(1);
-    MathTest_expect(v.z).be(-1);
+        var r,
+            v = (0, _Vec.Vec2)();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
+        (0, _expect.expect)(v.z).be(0);
 
-    v.mul(5);
-    MathTest_expect(v.x).be(15);
-    MathTest_expect(v.y).be(5);
-    MathTest_expect(v.z).be(-5);
+        v = (0, _Vec.Vec2)(3, 4, 5);
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(4);
+        (0, _expect.expect)(v.z).be(5);
 
-    v.set(2, 3, 4);
-    MathTest_expect(v.x).be(2);
-    MathTest_expect(v.y).be(3);
-    MathTest_expect(v.z).be(4);
+        v.setZero();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
+        (0, _expect.expect)(v.z).be(0);
 
-    r = MathTest_Vec3.dot(v, MathTest_Vec3(2, 0, -1));
-    MathTest_expect(r).be(0);
+        v.add((0, _Vec.Vec2)(3, 2, 1));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(2);
+        (0, _expect.expect)(v.z).be(1);
 
-    r = MathTest_Vec3.cross(v, MathTest_Vec3(2, 0, -1));
-    MathTest_expect(r.x).be(-3);
-    MathTest_expect(r.y).be(10);
-    MathTest_expect(r.z).be(-6);
-  });
+        v.sub((0, _Vec.Vec2)(0, 1, 2));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(1);
+        (0, _expect.expect)(v.z).be(-1);
+
+        v.mul(5);
+        (0, _expect.expect)(v.x).be(15);
+        (0, _expect.expect)(v.y).be(5);
+        (0, _expect.expect)(v.z).be(-5);
+
+        v.set(2, 3, 4);
+        (0, _expect.expect)(v.x).be(2);
+        (0, _expect.expect)(v.y).be(3);
+        (0, _expect.expect)(v.z).be(4);
+
+        r = _Vec.Vec2.dot(v, (0, _Vec.Vec2)(2, 0, -1));
+        (0, _expect.expect)(r).be(0);
+
+        r = _Vec.Vec2.cross(v, (0, _Vec.Vec2)(2, 0, -1));
+        (0, _expect.expect)(r.x).be(-3);
+        (0, _expect.expect)(r.y).be(10);
+        (0, _expect.expect)(r.z).be(-6);
+    });
 });
