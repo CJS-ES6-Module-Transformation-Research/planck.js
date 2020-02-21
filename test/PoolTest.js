@@ -1,42 +1,42 @@
-import { expect as PoolTest_expect } from "./testutil/expect";
-import { Pool as PoolTest_Pool } from "../lib/util/Pool";
+var _expect = require("./testutil/expect");
 
-describe('Pool', function() {
-  it('Pool', function() {
+var _Pool = require("../lib/util/Pool");
 
-    var pool = new PoolTest_Pool({
-      create : function() {
+describe('Pool', function () {
+  it('Pool', function () {
+
+    var pool = new _Pool.Pool({
+      create: function create() {
         return {
-          created : true,
-          busy : false,
-          discarded : false,
+          created: true,
+          busy: false,
+          discarded: false
         };
       },
-      allocate : function(obj) {
+      allocate: function allocate(obj) {
         obj.busy = true;
       },
-      release : function(obj) {
+      release: function release(obj) {
         obj.busy = false;
       },
-      discard : function(obj) {
+      discard: function discard(obj) {
         obj.discarded = true;
       },
-      max : 1
+      max: 1
     });
 
     var a = pool.allocate();
     var b = pool.allocate();
 
-    PoolTest_expect(a.created).be.ok;
-    PoolTest_expect(a.busy).be.ok;
-    PoolTest_expect(a.discarded).not.be.ok;
+    (0, _expect.expect)(a.created).be.ok;
+    (0, _expect.expect)(a.busy).be.ok;
+    (0, _expect.expect)(a.discarded).not.be.ok;
 
     pool.release(a);
-    PoolTest_expect(a.busy).not.be.ok;
-    PoolTest_expect(a.discarded).not.be.ok;
+    (0, _expect.expect)(a.busy).not.be.ok;
+    (0, _expect.expect)(a.discarded).not.be.ok;
 
     pool.release(b);
-    PoolTest_expect(b.discarded).be.ok;
-
+    (0, _expect.expect)(b.discarded).be.ok;
   });
 });
