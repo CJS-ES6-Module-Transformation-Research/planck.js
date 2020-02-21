@@ -1,22 +1,22 @@
-(function() {
+(function () {
 
   var reloadbtn = document.getElementById('reloadbtn');
-  reloadbtn.onclick = function() {
+  reloadbtn.onclick = function () {
     window.location.reload(false);
   };
 
   var dropdown = document.getElementById('dropdown');
-  dropdown.onchange = function() {
+  dropdown.onchange = function () {
     window.location = this.options[dropdown.selectedIndex].value;
   };
 
   var nextbtn = document.getElementById('nextbtn');
-  nextbtn.onclick = function() {
+  nextbtn.onclick = function () {
     playNext(+1);
   };
 
   var prevbtn = document.getElementById('prevbtn');
-  prevbtn.onclick = function() {
+  prevbtn.onclick = function () {
     playNext(-1);
   };
 
@@ -38,18 +38,18 @@
 
   // wrap testbed with ui
   var _testbed = planck.testbed;
-  planck.testbed = function(opts, callback) {
-    _testbed(opts, function(testbed) {
+  planck.testbed = function (opts, callback) {
+    _testbed(opts, function (testbed) {
 
-      playbtn.onclick = function() {
+      playbtn.onclick = function () {
         testbed.isPaused() ? testbed.resume() : testbed.pause();
       };
 
-      testbed._pause = function() {
+      testbed._pause = function () {
         playbtn.className = playbtn.className.replace('pause', 'play');
       };
 
-      testbed._resume = function() {
+      testbed._resume = function () {
         playbtn.className = playbtn.className.replace('play', 'pause');
       };
 
@@ -59,7 +59,7 @@
       var _lastStatus = '';
       var _lastInfo = '';
 
-      testbed._status = function(statusText, statusMap) {
+      testbed._status = function (statusText, statusMap) {
         var newline = '\n';
         var string = statusText || '';
         for (var key in statusMap) {
@@ -73,7 +73,7 @@
         }
       };
 
-      testbed._info = function(text) {
+      testbed._info = function (text) {
         if (_lastInfo !== text) {
           info.innerText = _lastInfo = text;
         }
@@ -86,5 +86,4 @@
       return world;
     });
   };
-
 })();
