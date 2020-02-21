@@ -1,14 +1,13 @@
-var fs = require('fs');
-var browserify = require('browserify');
-
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
-var header = require('gulp-header');
-var rename = require('gulp-rename');
-var transform = require('vinyl-transform');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
+import fs from "fs";
+import browserify from "browserify";
+import gulp from "gulp";
+import gutil from "gulp-util";
+import uglify from "gulp-uglify";
+import header from "gulp-header";
+import rename from "gulp-rename";
+import transform from "vinyl-transform";
+import source from "vinyl-source-stream";
+import buffer from "vinyl-buffer";
 
 var pkg = require('./package.json');
 
