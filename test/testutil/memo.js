@@ -1,4 +1,4 @@
-module.exports = function(create) {
+module.exports = function (create) {
   var memo = {};
   function fn(key) {
     if (Array.isArray(key)) {
@@ -15,7 +15,7 @@ module.exports = function(create) {
   }
   function list(ids) {
     if (Array.isArray(ids)) {
-      return ids.map(function(id) {
+      return ids.map(function (id) {
         return memo[id];
       });
     }
