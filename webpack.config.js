@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-const webpack = require('webpack');
+import fs from "fs";
+import path from "path";
+import webpack from "webpack";
 
 // var merge = require('lodash.merge');
 const pkg = require('./package.json');
