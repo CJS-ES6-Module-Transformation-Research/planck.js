@@ -1,11 +1,10 @@
-var expect = require('./testutil/expect');
-
-var Pool = require('../lib/util/Pool');
+import { expect as expect_expect } from "./testutil/expect";
+import { Pool as Pool_Pool } from "../lib/util/Pool";
 
 describe('Pool', function() {
   it('Pool', function() {
 
-    var pool = new Pool({
+    var pool = new Pool_Pool({
       create : function() {
         return {
           created : true,
@@ -28,16 +27,16 @@ describe('Pool', function() {
     var a = pool.allocate();
     var b = pool.allocate();
 
-    expect(a.created).be.ok;
-    expect(a.busy).be.ok;
-    expect(a.discarded).not.be.ok;
+    expect_expect(a.created).be.ok;
+    expect_expect(a.busy).be.ok;
+    expect_expect(a.discarded).not.be.ok;
 
     pool.release(a);
-    expect(a.busy).not.be.ok;
-    expect(a.discarded).not.be.ok;
+    expect_expect(a.busy).not.be.ok;
+    expect_expect(a.discarded).not.be.ok;
 
     pool.release(b);
-    expect(b.discarded).be.ok;
+    expect_expect(b.discarded).be.ok;
 
   });
 });
