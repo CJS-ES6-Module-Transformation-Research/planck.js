@@ -1,4 +1,6 @@
-var expect = module.exports = require('expect.js');
+var expect = expectjsjs;
+
+var exported_expect = expect;
 
 expect.Assertion.prototype.list = function(obj, stringify) {
   var sfn;
@@ -45,3 +47,4 @@ Array.prototype.pluck = function(key) {
     return obj[key];
   });
 };
+export { exported_expect as expect };
