@@ -1,10 +1,3 @@
-var Path = require('path');
-var FS = require('fs');
-var Express = require('express');
-var Browserify = require('browserify-middleware');
-// var ServeIndex = require('serve-index');
-var Handlebars = require('handlebars');
-
 var app = Express();
 
 app.set('port', process.env.PORT || 6587);
