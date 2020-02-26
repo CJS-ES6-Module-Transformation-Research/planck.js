@@ -1,15 +1,3 @@
-var fs = require('fs');
-var browserify = require('browserify');
-
-var gulp = require('gulp');
-var gutil = require('gulp-util');
-var uglify = require('gulp-uglify');
-var header = require('gulp-header');
-var rename = require('gulp-rename');
-var transform = require('vinyl-transform');
-var source = require('vinyl-source-stream');
-var buffer = require('vinyl-buffer');
-
 var pkg = require('./package.json');
 
 gulp.task('default', ['main', 'testbed']);
