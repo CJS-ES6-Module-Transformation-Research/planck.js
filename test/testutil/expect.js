@@ -1,3 +1,4 @@
+"use strict";
 var expect = module.exports = require('expect.js');
 
 expect.Assertion.prototype.list = function(obj, stringify) {

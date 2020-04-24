@@ -1,3 +1,4 @@
+"use strict";
 module.exports = function(create) {
   var memo = {};
   function fn(key) {

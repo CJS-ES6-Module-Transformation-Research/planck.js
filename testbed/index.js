@@ -1,3 +1,4 @@
+"use strict";
 var planck = require('../lib/');
 var Stage = require('stage-js/platform/web');
 

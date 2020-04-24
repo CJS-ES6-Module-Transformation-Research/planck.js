@@ -1,3 +1,4 @@
+"use strict";
 var expect = require('./testutil/expect');
 
 var Pool = require('../lib/util/Pool');

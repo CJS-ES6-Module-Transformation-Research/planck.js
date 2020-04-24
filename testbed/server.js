@@ -1,3 +1,4 @@
+"use strict";
 var Path = require('path');
 var FS = require('fs');
 var Express = require('express');
