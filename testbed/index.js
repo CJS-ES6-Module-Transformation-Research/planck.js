@@ -1,7 +1,8 @@
-var planck = require('../lib/');
-var Stage = require('stage-js/platform/web');
+import * as index_indexjsjs from "../lib/";
+import ext_stagejsplatformweb_Stage from "stage-js/platform/web";
+var encapsulated_planck;
 
-module.exports = planck;
+encapsulated_planck = index_indexjsjs;
 
 // x, y, width, height: camera position
 // hz, speed: frequency and speed of simulation
@@ -9,22 +10,22 @@ module.exports = planck;
 // step: function, is always called
 // paint: function, is called only after repaint
 
-planck.testbed = function(opts, callback) {
+index_indexjsjs.testbed = function(opts, callback) {
   if (typeof opts === 'function') {
     callback = opts;
     opts = null;
   }
 
-  Stage(function(stage, canvas) {
+  ext_stagejsplatformweb_Stage(function(stage, canvas) {
 
-    stage.on(Stage.Mouse.START, function() {
+    stage.on(ext_stagejsplatformweb_Stage.Mouse.START, function() {
       window.focus();
       document.activeElement && document.activeElement.blur();
       canvas.focus();
     });
 
     stage.MAX_ELAPSE = 1000 / 30;
-    var Vec2 = planck.Vec2;
+    var Vec2 = index_indexjsjs.Vec2;
 
     var testbed = {};
 
@@ -100,8 +101,8 @@ planck.testbed = function(opts, callback) {
     var lastDrawHash = "", drawHash = "";
 
     (function() {
-      var drawingTexture = new Stage.Texture();
-      stage.append(Stage.image(drawingTexture));
+      var drawingTexture = new ext_stagejsplatformweb_Stage.Texture();
+      stage.append(ext_stagejsplatformweb_Stage.image(drawingTexture));
 
       var buffer = [];
       stage.tick(function() {
@@ -238,7 +239,7 @@ planck.testbed = function(opts, callback) {
 
     function findBody(point) {
       var body;
-      var aabb = planck.AABB(point, point);
+      var aabb = index_indexjsjs.AABB(point, point);
       world.queryAABB(aabb, function(fixture) {
         if (body) {
           return;
@@ -258,7 +259,7 @@ planck.testbed = function(opts, callback) {
     var targetBody;
     var mouseMove = {x:0, y:0};
 
-    viewer.attr('spy', true).on(Stage.Mouse.START, function(point) {
+    viewer.attr('spy', true).on(ext_stagejsplatformweb_Stage.Mouse.START, function(point) {
       point = { x: point.x, y: -point.y };
       if (targetBody) {
         return;
@@ -273,11 +274,11 @@ planck.testbed = function(opts, callback) {
         targetBody = body;
 
       } else {
-        mouseJoint = planck.MouseJoint({maxForce: 1000}, mouseGround, body, Vec2(point));
+        mouseJoint = index_indexjsjs.MouseJoint({maxForce: 1000}, mouseGround, body, Vec2(point));
         world.createJoint(mouseJoint);
       }
 
-    }).on(Stage.Mouse.MOVE, function(point) {
+    }).on(ext_stagejsplatformweb_Stage.Mouse.MOVE, function(point) {
       point = { x: point.x, y: -point.y };
       if (mouseJoint) {
         mouseJoint.setTarget(point);
@@ -285,7 +286,7 @@ planck.testbed = function(opts, callback) {
 
       mouseMove.x = point.x;
       mouseMove.y = point.y;
-    }).on(Stage.Mouse.END, function(point) {
+    }).on(ext_stagejsplatformweb_Stage.Mouse.END, function(point) {
       point = { x: point.x, y: -point.y };
       if (mouseJoint) {
         world.destroyJoint(mouseJoint);
@@ -297,7 +298,7 @@ planck.testbed = function(opts, callback) {
         targetBody = null;
       }
 
-    }).on(Stage.Mouse.CANCEL, function(point) {
+    }).on(ext_stagejsplatformweb_Stage.Mouse.CANCEL, function(point) {
       point = { x: point.x, y: -point.y };
       if (mouseJoint) {
         world.destroyJoint(mouseJoint);
@@ -347,8 +348,8 @@ planck.testbed = function(opts, callback) {
 
 };
 
-Viewer._super = Stage;
-Viewer.prototype = Stage._create(Viewer._super.prototype);
+Viewer._super = ext_stagejsplatformweb_Stage;
+Viewer.prototype = ext_stagejsplatformweb_Stage._create(Viewer._super.prototype);
 
 function Viewer(world, opts) {
   Viewer._super.call(this);
@@ -486,7 +487,7 @@ Viewer.prototype.drawJoint = function(joint, options) {
 
   var length = 10;
 
-  var texture = Stage.canvas(function(ctx) {
+  var texture = ext_stagejsplatformweb_Stage.canvas(function(ctx) {
 
     this.size(length + 2 * lw, 2 * lw, ratio);
 
@@ -501,7 +502,7 @@ Viewer.prototype.drawJoint = function(joint, options) {
     ctx.stroke();
   });
 
-  var image = Stage.image(texture).stretch();
+  var image = ext_stagejsplatformweb_Stage.image(texture).stretch();
   return image;
 };
 
@@ -515,7 +516,7 @@ Viewer.prototype.drawCircle = function(shape, options) {
   var w = r * 2 + lw * 2;
   var h = r * 2 + lw * 2;
 
-  var texture = Stage.canvas(function(ctx) {
+  var texture = ext_stagejsplatformweb_Stage.canvas(function(ctx) {
 
     this.size(w, h, ratio);
 
@@ -530,9 +531,9 @@ Viewer.prototype.drawCircle = function(shape, options) {
     ctx.strokeStyle = options.strokeStyle;
     ctx.stroke();
   });
-  var image = Stage.image(texture)
+  var image = ext_stagejsplatformweb_Stage.image(texture)
     .offset(shape.m_p.x - cx, -shape.m_p.y - cy);
-  var node = Stage.create().append(image);
+  var node = ext_stagejsplatformweb_Stage.create().append(image);
   return node;
 };
 
@@ -548,7 +549,7 @@ Viewer.prototype.drawEdge = function(edge, options) {
 
   var length = Math.sqrt(dx * dx + dy * dy);
 
-  var texture = Stage.canvas(function(ctx) {
+  var texture = ext_stagejsplatformweb_Stage.canvas(function(ctx) {
 
     this.size(length + 2 * lw, 2 * lw, ratio);
 
@@ -566,11 +567,11 @@ Viewer.prototype.drawEdge = function(edge, options) {
   var minX = Math.min(v1.x, v2.x);
   var minY = Math.min(-v1.y, -v2.y);
 
-  var image = Stage.image(texture);
+  var image = ext_stagejsplatformweb_Stage.image(texture);
   console.log(-Math.atan2(dy, dx))
   image.rotate(-Math.atan2(dy, dx));
   image.offset(minX - lw, minY - lw);
-  var node = Stage.create().append(image);
+  var node = ext_stagejsplatformweb_Stage.create().append(image);
   return node;
 };
 
@@ -597,7 +598,7 @@ Viewer.prototype.drawPolygon = function(shape, options) {
   var width = maxX - minX;
   var height = maxY - minY;
 
-  var texture = Stage.canvas(function(ctx) {
+  var texture = ext_stagejsplatformweb_Stage.canvas(function(ctx) {
 
     this.size(width + 2 * lw, height + 2 * lw, ratio);
 
@@ -629,9 +630,9 @@ Viewer.prototype.drawPolygon = function(shape, options) {
     ctx.stroke();
   });
 
-  var image = Stage.image(texture);
+  var image = ext_stagejsplatformweb_Stage.image(texture);
   image.offset(minX - lw, minY - lw);
-  var node = Stage.create().append(image);
+  var node = ext_stagejsplatformweb_Stage.create().append(image);
   return node;
 };
 
@@ -658,7 +659,7 @@ Viewer.prototype.drawChain = function(shape, options) {
   var width = maxX - minX;
   var height = maxY - minY;
 
-  var texture = Stage.canvas(function(ctx) {
+  var texture = ext_stagejsplatformweb_Stage.canvas(function(ctx) {
 
     this.size(width + 2 * lw, height + 2 * lw, ratio);
 
@@ -691,8 +692,8 @@ Viewer.prototype.drawChain = function(shape, options) {
     ctx.stroke();
   });
 
-  var image = Stage.image(texture);
+  var image = ext_stagejsplatformweb_Stage.image(texture);
   image.offset(minX - lw, minY - lw);
-  var node = Stage.create().append(image);
+  var node = ext_stagejsplatformweb_Stage.create().append(image);
   return node;
 };
