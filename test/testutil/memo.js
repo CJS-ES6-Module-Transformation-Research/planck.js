@@ -1,4 +1,5 @@
-module.exports = function(create) {
+var encapsulated_anonymus;
+encapsulated_anonymus = function(create) {
   var memo = {};
   function fn(key) {
     if (Array.isArray(key)) {
