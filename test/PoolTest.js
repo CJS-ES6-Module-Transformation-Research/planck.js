@@ -1,42 +1,44 @@
-import { expect as testutilexpect_expectjs } from "./testutil/expect";
-import { Pool as libutilPool_Pooljs } from "../lib/util/Pool";
+"use strict";
 
-describe('Pool', function() {
-  it('Pool', function() {
+var _expect = require("./testutil/expect");
 
-    var pool = new libutilPool_Pooljs({
-      create : function() {
+var _Pool = require("../lib/util/Pool");
+
+describe('Pool', function () {
+  it('Pool', function () {
+
+    var pool = new _Pool.Pool({
+      create: function create() {
         return {
-          created : true,
-          busy : false,
-          discarded : false,
+          created: true,
+          busy: false,
+          discarded: false
         };
       },
-      allocate : function(obj) {
+      allocate: function allocate(obj) {
         obj.busy = true;
       },
-      release : function(obj) {
+      release: function release(obj) {
         obj.busy = false;
       },
-      discard : function(obj) {
+      discard: function discard(obj) {
         obj.discarded = true;
       },
-      max : 1
+      max: 1
     });
 
     var a = pool.allocate();
     var b = pool.allocate();
 
-    testutilexpect_expectjs(a.created).be.ok;
-    testutilexpect_expectjs(a.busy).be.ok;
-    testutilexpect_expectjs(a.discarded).not.be.ok;
+    (0, _expect.expect)(a.created).be.ok;
+    (0, _expect.expect)(a.busy).be.ok;
+    (0, _expect.expect)(a.discarded).not.be.ok;
 
     pool.release(a);
-    testutilexpect_expectjs(a.busy).not.be.ok;
-    testutilexpect_expectjs(a.discarded).not.be.ok;
+    (0, _expect.expect)(a.busy).not.be.ok;
+    (0, _expect.expect)(a.discarded).not.be.ok;
 
     pool.release(b);
-    testutilexpect_expectjs(b.discarded).be.ok;
-
+    (0, _expect.expect)(b.discarded).be.ok;
   });
 });
