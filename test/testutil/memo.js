@@ -1,5 +1,7 @@
+"use strict";
+
 var encapsulated_anonymus;
-encapsulated_anonymus = function(create) {
+encapsulated_anonymus = function encapsulated_anonymus(create) {
   var memo = {};
   function fn(key) {
     if (Array.isArray(key)) {
@@ -16,7 +18,7 @@ encapsulated_anonymus = function(create) {
   }
   function list(ids) {
     if (Array.isArray(ids)) {
-      return ids.map(function(id) {
+      return ids.map(function (id) {
         return memo[id];
       });
     }
