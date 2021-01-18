@@ -1,6 +1,8 @@
-var expect = module.exports = require('expect.js');
+import ext_expect_expect from "expect.js";
+var mod_expect;
+var expect = ext_expect_expect;
 
-expect.Assertion.prototype.list = function(obj, stringify) {
+ext_expect_expect.Assertion.prototype.list = function(obj, stringify) {
   var sfn;
   if (typeof stringify === 'function') {
     sfn = stringify;
@@ -11,7 +13,7 @@ expect.Assertion.prototype.list = function(obj, stringify) {
     };
   } else {
     sfn = function(obj) {
-      return expect.stringify(obj, false, 1);
+      return ext_expect_expect.stringify(obj, false, 1);
     };
   }
   var match = false;
@@ -29,7 +31,7 @@ expect.Assertion.prototype.list = function(obj, stringify) {
   return this;
 };
 
-expect.Assertion.prototype.near = function(obj, ep) {
+ext_expect_expect.Assertion.prototype.near = function(obj, ep) {
   ep = ep || 1e-12;
   var diff = this.obj - obj;
   this.assert(-ep < diff && diff < ep, function() {
@@ -45,3 +47,5 @@ Array.prototype.pluck = function(key) {
     return obj[key];
   });
 };
+mod_expect = expect;
+export { mod_expect as expect };

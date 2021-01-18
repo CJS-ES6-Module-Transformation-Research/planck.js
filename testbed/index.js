@@ -1,7 +1,9 @@
-var planck = require('../lib/');
+import { indexjs as index_indexjs } from "../lib/";
 var Stage = require('stage-js/platform/web');
 
-module.exports = planck;
+var encapsulated_planck;
+
+encapsulated_planck = index_indexjs;
 
 // x, y, width, height: camera position
 // hz, speed: frequency and speed of simulation
@@ -9,7 +11,7 @@ module.exports = planck;
 // step: function, is always called
 // paint: function, is called only after repaint
 
-planck.testbed = function(opts, callback) {
+index_indexjs.testbed = function(opts, callback) {
   if (typeof opts === 'function') {
     callback = opts;
     opts = null;
@@ -24,7 +26,7 @@ planck.testbed = function(opts, callback) {
     });
 
     stage.MAX_ELAPSE = 1000 / 30;
-    var Vec2 = planck.Vec2;
+    var Vec2 = index_indexjs.Vec2;
 
     var testbed = {};
 
@@ -238,7 +240,7 @@ planck.testbed = function(opts, callback) {
 
     function findBody(point) {
       var body;
-      var aabb = planck.AABB(point, point);
+      var aabb = index_indexjs.AABB(point, point);
       world.queryAABB(aabb, function(fixture) {
         if (body) {
           return;
@@ -273,7 +275,7 @@ planck.testbed = function(opts, callback) {
         targetBody = body;
 
       } else {
-        mouseJoint = planck.MouseJoint({maxForce: 1000}, mouseGround, body, Vec2(point));
+        mouseJoint = index_indexjs.MouseJoint({maxForce: 1000}, mouseGround, body, Vec2(point));
         world.createJoint(mouseJoint);
       }
 
