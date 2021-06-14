@@ -1,23 +1,22 @@
-var Path = require('path');
-var FS = require('fs');
-var Express = require('express');
-var Browserify = require('browserify-middleware');
-// var ServeIndex = require('serve-index');
-var Handlebars = require('handlebars');
+import ext_Path from "path";
+import ext_FS from "fs";
+import ext_Express from "express";
+import ext_Browserify from "browserify-middleware";
+import ext_Handlebars from "handlebars";
 
-var app = Express();
+var app = ext_Express();
 
 app.set('port', process.env.PORT || 6587);
 
-app.use('/dist/planck.js', Browserify('./lib/index.js', {standalone : 'planck'}));
-app.use('/dist/planck-with-testbed.js', Browserify('./testbed/index.js', {standalone : 'planck'}));
+app.use('/dist/planck.js', ext_Browserify('./lib/index.js', {standalone : 'planck'}));
+app.use('/dist/planck-with-testbed.js', ext_Browserify('./testbed/index.js', {standalone : 'planck'}));
 
-app.use(Express.static(Path.resolve(__dirname, '..')));
+app.use(ext_Express.static(ext_Path.resolve(__dirname, '..')));
 
 app.get('/example/:name?', function (req, res, next) {
   var pname = req.params.name || '';
   var script = '';
-  var examples = FS.readdirSync('./example/')
+  var examples = ext_FS.readdirSync('./example/')
     .filter(function(file) {
       return file.endsWith('.js');
     })
@@ -32,7 +31,7 @@ app.get('/example/:name?', function (req, res, next) {
       return {name: name, url: url, selected: selected};
     });
 
-  var page = Handlebars.compile(FS.readFileSync('./testbed/index.hbs') + '');
+  var page = ext_Handlebars.compile(ext_FS.readFileSync('./testbed/index.hbs') + '');
   res.send(page({
     script: script,
     examples : examples
