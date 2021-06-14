@@ -1,133 +1,136 @@
-import { expect as expect_expect } from "./testutil/expect";
-import ext_sinon_sinon from "sinon";
-import { isFinite as Mathjs_isFinite } from "../lib/common/Math";
+"use strict";
 
-import {
-  Vec2 as Vec2_Vec2,
-  skew as Vec2js_skew,
-  dot as Vec2js_dot,
-  cross as Vec2js_cross,
-  clamp as Vec2js_clamp,
-} from "../lib/common/Vec2";
+var _expect = require("./testutil/expect");
 
-describe('Math', function() {
+var _sinon = require("sinon");
 
-  it('Math', function() {
-    expect_expect(Mathjs_isFinite(+'NaN')).be(false);
-    expect_expect(Mathjs_isFinite(Infinity)).be(false);
-    expect_expect(Mathjs_isFinite('0')).be(false);
-    expect_expect(Mathjs_isFinite('')).be(false);
+var _sinon2 = _interopRequireDefault(_sinon);
 
-    expect_expect(Mathjs_isFinite(1)).be(true);
-    expect_expect(Mathjs_isFinite(0)).be(true);
-    expect_expect(Mathjs_isFinite(-1)).be(true);
+var _Math = require("../lib/common/Math");
 
-    // InvSqrt
-    // NextPowerOfTwo
-    // IsPowerOfTwo
-    // clamp
-    // EPSILON
-  });
+var _Vec = require("../lib/common/Vec2");
 
-  it('Vec2', function() {
-    var r, v = new Vec2_Vec2();
-    expect_expect(v.x).be(0);
-    expect_expect(v.y).be(0);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    v.set(3, 4);
-    expect_expect(v.x).be(3);
-    expect_expect(v.y).be(4);
-    expect_expect(v.length()).be(5);
-    expect_expect(v.lengthSquared()).be(25);
+describe('Math', function () {
 
-    v.normalize(3, 4);
-    expect_expect(v.x).near(3 / 5);
-    expect_expect(v.y).near(4 / 5);
+    it('Math', function () {
+        (0, _expect.expect)((0, _Math.isFinite)(+'NaN')).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)(Infinity)).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)('0')).be(false);
+        (0, _expect.expect)((0, _Math.isFinite)('')).be(false);
 
-    v.setZero();
-    expect_expect(v.x).be(0);
-    expect_expect(v.y).be(0);
+        (0, _expect.expect)((0, _Math.isFinite)(1)).be(true);
+        (0, _expect.expect)((0, _Math.isFinite)(0)).be(true);
+        (0, _expect.expect)((0, _Math.isFinite)(-1)).be(true);
 
-    v.add(new Vec2_Vec2(3, 2));
-    expect_expect(v.x).be(3);
-    expect_expect(v.y).be(2);
+        // InvSqrt
+        // NextPowerOfTwo
+        // IsPowerOfTwo
+        // clamp
+        // EPSILON
+    });
 
-    v.sub(new Vec2_Vec2(2, 1));
-    expect_expect(v.x).be(1);
-    expect_expect(v.y).be(1);
+    it('Vec2', function () {
+        var r,
+            v = new _Vec.Vec2();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
 
-    v.mul(5);
-    expect_expect(v.x).be(5);
-    expect_expect(v.y).be(5);
+        v.set(3, 4);
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(4);
+        (0, _expect.expect)(v.length()).be(5);
+        (0, _expect.expect)(v.lengthSquared()).be(25);
 
-    v.set(2, 3);
-    expect_expect(v.x).be(2);
-    expect_expect(v.y).be(3);
+        v.normalize(3, 4);
+        (0, _expect.expect)(v.x).near(3 / 5);
+        (0, _expect.expect)(v.y).near(4 / 5);
 
-    r = Vec2js_skew(v);
-    expect_expect(r.x).be(-3);
-    expect_expect(r.y).be(2);
+        v.setZero();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
 
-    r = Vec2js_dot(v, new Vec2_Vec2(2, 3));
-    expect_expect(r).be(13);
+        v.add(new _Vec.Vec2(3, 2));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(2);
 
-    r = Vec2js_cross(v, new Vec2_Vec2(2, 3));
-    expect_expect(r).be(0);
+        v.sub(new _Vec.Vec2(2, 1));
+        (0, _expect.expect)(v.x).be(1);
+        (0, _expect.expect)(v.y).be(1);
 
-    r = Vec2js_cross(v, 5);
-    expect_expect(r.x).be(15);
-    expect_expect(r.y).be(-10);
+        v.mul(5);
+        (0, _expect.expect)(v.x).be(5);
+        (0, _expect.expect)(v.y).be(5);
 
-    r = Vec2js_clamp(Vec2_Vec2(6, 8), 5);
-    expect_expect(r.x).near(3);
-    expect_expect(r.y).near(4);
+        v.set(2, 3);
+        (0, _expect.expect)(v.x).be(2);
+        (0, _expect.expect)(v.y).be(3);
 
-  });
+        r = (0, _Vec.skew)(v);
+        (0, _expect.expect)(r.x).be(-3);
+        (0, _expect.expect)(r.y).be(2);
 
-  it('Vec3', function() {
-    return;
+        r = (0, _Vec.dot)(v, new _Vec.Vec2(2, 3));
+        (0, _expect.expect)(r).be(13);
 
-    var r, v = Vec2_Vec2();
-    expect_expect(v.x).be(0);
-    expect_expect(v.y).be(0);
-    expect_expect(v.z).be(0);
+        r = (0, _Vec.cross)(v, new _Vec.Vec2(2, 3));
+        (0, _expect.expect)(r).be(0);
 
-    v = Vec2_Vec2(3, 4, 5);
-    expect_expect(v.x).be(3);
-    expect_expect(v.y).be(4);
-    expect_expect(v.z).be(5);
+        r = (0, _Vec.cross)(v, 5);
+        (0, _expect.expect)(r.x).be(15);
+        (0, _expect.expect)(r.y).be(-10);
 
-    v.setZero();
-    expect_expect(v.x).be(0);
-    expect_expect(v.y).be(0);
-    expect_expect(v.z).be(0);
+        r = (0, _Vec.clamp)((0, _Vec.Vec2)(6, 8), 5);
+        (0, _expect.expect)(r.x).near(3);
+        (0, _expect.expect)(r.y).near(4);
+    });
 
-    v.add(Vec2_Vec2(3, 2, 1));
-    expect_expect(v.x).be(3);
-    expect_expect(v.y).be(2);
-    expect_expect(v.z).be(1);
+    it('Vec3', function () {
+        return;
 
-    v.sub(Vec2_Vec2(0, 1, 2));
-    expect_expect(v.x).be(3);
-    expect_expect(v.y).be(1);
-    expect_expect(v.z).be(-1);
+        var r,
+            v = (0, _Vec.Vec2)();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
+        (0, _expect.expect)(v.z).be(0);
 
-    v.mul(5);
-    expect_expect(v.x).be(15);
-    expect_expect(v.y).be(5);
-    expect_expect(v.z).be(-5);
+        v = (0, _Vec.Vec2)(3, 4, 5);
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(4);
+        (0, _expect.expect)(v.z).be(5);
 
-    v.set(2, 3, 4);
-    expect_expect(v.x).be(2);
-    expect_expect(v.y).be(3);
-    expect_expect(v.z).be(4);
+        v.setZero();
+        (0, _expect.expect)(v.x).be(0);
+        (0, _expect.expect)(v.y).be(0);
+        (0, _expect.expect)(v.z).be(0);
 
-    r = Vec2js_dot(v, Vec2_Vec2(2, 0, -1));
-    expect_expect(r).be(0);
+        v.add((0, _Vec.Vec2)(3, 2, 1));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(2);
+        (0, _expect.expect)(v.z).be(1);
 
-    r = Vec2js_cross(v, Vec2_Vec2(2, 0, -1));
-    expect_expect(r.x).be(-3);
-    expect_expect(r.y).be(10);
-    expect_expect(r.z).be(-6);
-  });
+        v.sub((0, _Vec.Vec2)(0, 1, 2));
+        (0, _expect.expect)(v.x).be(3);
+        (0, _expect.expect)(v.y).be(1);
+        (0, _expect.expect)(v.z).be(-1);
+
+        v.mul(5);
+        (0, _expect.expect)(v.x).be(15);
+        (0, _expect.expect)(v.y).be(5);
+        (0, _expect.expect)(v.z).be(-5);
+
+        v.set(2, 3, 4);
+        (0, _expect.expect)(v.x).be(2);
+        (0, _expect.expect)(v.y).be(3);
+        (0, _expect.expect)(v.z).be(4);
+
+        r = (0, _Vec.dot)(v, (0, _Vec.Vec2)(2, 0, -1));
+        (0, _expect.expect)(r).be(0);
+
+        r = (0, _Vec.cross)(v, (0, _Vec.Vec2)(2, 0, -1));
+        (0, _expect.expect)(r.x).be(-3);
+        (0, _expect.expect)(r.y).be(10);
+        (0, _expect.expect)(r.z).be(-6);
+    });
 });
