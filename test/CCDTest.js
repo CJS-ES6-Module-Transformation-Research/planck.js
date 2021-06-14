@@ -1,91 +1,95 @@
-import { expect as expect_expect } from "./testutil/expect";
-import ext_sinon_sinon from "sinon";
-import { Vec2 as Vec2_Vec2 } from "../lib/common/Vec2";
-import { Transform as Transform_Transform } from "../lib/common/Transform";
-import { Sweep as Sweep_Sweep } from "../lib/common/Sweep";
-import { CircleShape as Circle } from "../lib/shape/CircleShape";
-import { TimeOfImpact as TimeOfImpact_TimeOfImpact } from "../lib/collision/TimeOfImpact";
+"use strict";
 
-import {
-  Distance as Distance_Distance,
-  Input as Distancejs_Input,
-  Output as Distancejs_Output,
-  Proxy as Distancejs_Proxy,
-  Cache as Distancejs_Cache,
-} from "../lib/collision/Distance";
+var _expect = require("./testutil/expect");
 
-var TOIInput = TimeOfImpact_TimeOfImpact.Input;
-var TOIOutput = TimeOfImpact_TimeOfImpact.Output;
+var _sinon = require("sinon");
 
-var DistanceInput = Distancejs_Input;
-var DistanceOutput = Distancejs_Output;
-var DistanceProxy = Distancejs_Proxy;
-var SimplexCache = Distancejs_Cache;
+var _sinon2 = _interopRequireDefault(_sinon);
 
-describe('CCD', function() {
+var _Vec = require("../lib/common/Vec2");
 
-  it('Distance', function() {
-    var c1 = Circle(1);
+var _Transform = require("../lib/common/Transform");
 
-    var input = new DistanceInput();
-    input.proxyA.set(c1, 0);
-    input.proxyB.set(c1, 0);
-    input.transformA = new Transform_Transform(Vec2_Vec2(0, 0), 0);
-    input.transformB = new Transform_Transform(Vec2_Vec2(1.9, 0), 0);
-    input.useRadii = true;
-    var cache = new SimplexCache();
-    var output = new DistanceOutput();
-    Distance_Distance(output, cache, input);
+var _Sweep = require("../lib/common/Sweep");
 
-    expect_expect(output.distance).be(0);
-    console.log(output);
+var _CircleShape = require("../lib/shape/CircleShape");
 
-    var input = new DistanceInput();
-    input.proxyA.set(c1, 0);
-    input.proxyB.set(c1, 0);
-    input.transformA = new Transform_Transform(Vec2_Vec2(0, 0), 0);
-    input.transformB = new Transform_Transform(Vec2_Vec2(2.1, 0), 0);
-    input.useRadii = true;
-    var cache = new SimplexCache();
-    var output = new DistanceOutput();
-    Distance_Distance(output, cache, input);
+var _TimeOfImpact = require("../lib/collision/TimeOfImpact");
 
-    expect_expect(output.distance).near(0.1)
-    console.log(output);
-  });
+var _Distance = require("../lib/collision/Distance");
 
-  it('TimeOfImpact', function() {
-    var c1 = Circle(1);
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-    var input = new TOIInput();
-    input.proxyA.set(c1, 0);
-    input.proxyB.set(c1, 0);
+var TOIInput = _TimeOfImpact.TimeOfImpact.Input;
+var TOIOutput = _TimeOfImpact.TimeOfImpact.Output;
 
-    input.sweepA = new Sweep_Sweep();
-    input.sweepA = new Sweep_Sweep();
+var DistanceInput = _Distance.Input;
+var DistanceOutput = _Distance.Output;
+var DistanceProxy = _Distance.Proxy;
+var SimplexCache = _Distance.Cache;
 
-    input.sweepA.setTransform(new Transform_Transform(Vec2_Vec2(0, 0), 0));
-    input.sweepB.setTransform(new Transform_Transform(Vec2_Vec2(1.9, 0), 0));
+describe('CCD', function () {
 
-    input.tMax = 1.0;
+    it('Distance', function () {
+        var c1 = (0, _CircleShape.CircleShape)(1);
 
-    var output = new TOIOutput();
+        var input = new DistanceInput();
+        input.proxyA.set(c1, 0);
+        input.proxyB.set(c1, 0);
+        input.transformA = new _Transform.Transform((0, _Vec.Vec2)(0, 0), 0);
+        input.transformB = new _Transform.Transform((0, _Vec.Vec2)(1.9, 0), 0);
+        input.useRadii = true;
+        var cache = new SimplexCache();
+        var output = new DistanceOutput();
+        (0, _Distance.Distance)(output, cache, input);
 
-    TimeOfImpact_TimeOfImpact(output, input);
-    console.log(output.t, output.state);
+        (0, _expect.expect)(output.distance).be(0);
+        console.log(output);
 
-    input.sweepB.setTransform(new Transform_Transform(Vec2_Vec2(2, 0), 0));
+        var input = new DistanceInput();
+        input.proxyA.set(c1, 0);
+        input.proxyB.set(c1, 0);
+        input.transformA = new _Transform.Transform((0, _Vec.Vec2)(0, 0), 0);
+        input.transformB = new _Transform.Transform((0, _Vec.Vec2)(2.1, 0), 0);
+        input.useRadii = true;
+        var cache = new SimplexCache();
+        var output = new DistanceOutput();
+        (0, _Distance.Distance)(output, cache, input);
 
-    TimeOfImpact_TimeOfImpact(output, input);
-    console.log(output.t, output.state);
+        (0, _expect.expect)(output.distance).near(0.1);
+        console.log(output);
+    });
 
-    input.sweepB.setTransform(new Transform_Transform(Vec2_Vec2(2.1, 0), 0));
+    it('TimeOfImpact', function () {
+        var c1 = (0, _CircleShape.CircleShape)(1);
 
-    TimeOfImpact_TimeOfImpact(output, input);
-    console.log(output.t, output.state);
-  });
+        var input = new TOIInput();
+        input.proxyA.set(c1, 0);
+        input.proxyB.set(c1, 0);
 
-  it('Solver', function() {
-  });
+        input.sweepA = new _Sweep.Sweep();
+        input.sweepA = new _Sweep.Sweep();
 
+        input.sweepA.setTransform(new _Transform.Transform((0, _Vec.Vec2)(0, 0), 0));
+        input.sweepB.setTransform(new _Transform.Transform((0, _Vec.Vec2)(1.9, 0), 0));
+
+        input.tMax = 1.0;
+
+        var output = new TOIOutput();
+
+        (0, _TimeOfImpact.TimeOfImpact)(output, input);
+        console.log(output.t, output.state);
+
+        input.sweepB.setTransform(new _Transform.Transform((0, _Vec.Vec2)(2, 0), 0));
+
+        (0, _TimeOfImpact.TimeOfImpact)(output, input);
+        console.log(output.t, output.state);
+
+        input.sweepB.setTransform(new _Transform.Transform((0, _Vec.Vec2)(2.1, 0), 0));
+
+        (0, _TimeOfImpact.TimeOfImpact)(output, input);
+        console.log(output.t, output.state);
+    });
+
+    it('Solver', function () {});
 });
